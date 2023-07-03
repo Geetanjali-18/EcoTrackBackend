@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>INTERACTIVE MAP</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body {
+                width: 100vw;
+                min-height: 100vh;
+                position: relative;
+            }
+            #interactive-map {
+                position: absolute;
+                /* top: 7px; */
+                top: 0;
+                left: 0;
+                /* width: 4007.415px;
+            height: 1997.110px; */
+                width: 200.661vmin;
+                height: 100vmin;
+                display: grid;
+                place-items: center;
+            }
+            .horizontal-line {
+                position: absolute;
+                top: calc(100vmin / 2);
+                left: 0;
+                width: 200.661vmin;
+                height: 1px;
+                position: absolute;
+                background-color: black;
+            }
+            .vertical-line {
+                position: absolute;
+                left: calc(200.661vmin / 2);
+                top: 0;
+                width: 1px;
+                height: 100vmin;
+                position: absolute;
+                background-color: black;
+            }
+            .red-dot,
+            .green-dot,
+            .orange-dot {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 1vmin;
+                height: 1vmin;
+                background-color: #fd1c03;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+            .green-dot {
+                background-color: #39ff14;
+            }
+            .orange-dot {
+                background-color: #ff6700;
+            }
+        </style>
+    </head>
+    <body>
+        <img
+            src="8k_earth_texture_map.jpeg"
+            alt="Not Found"
+            id="interactive-map"
+        />
+        <div id="dot-1" class="green-dot"></div>
+        <div id="dot-2" class="orange-dot"></div>
+        <div id="dot-3" class="red-dot"></div>
+
+        <div class="horizontal-line"></div>
+        <div class="vertical-line"></div>
+        <script>
+            const myFunc = () => {
+                const WIDTH =
+                    window.innerWidth < window.innerHeight
+                        ? 2.00661 * window.innerWidth
+                        : 2.00661 * window.innerHeight;
+                const HEIGHT =
+                    window.innerWidth < window.innerHeight
+                        ? window.innerWidth
+                        : window.innerHeight;
+
+                // TOKYO
+                const dot1 = document.getElementById("dot-1");
+                const LATITUDE1 = 35.6762;
+                const LONGITUDE1 = 139.6503;
+                const X1 =
+                    ((LONGITUDE1 + 180) * (WIDTH / 360)).toString() + "px";
+                const Y1 =
+                    ((90 - LATITUDE1) * (HEIGHT / 180)).toString() + "px";
+                dot1.style.left = X1;
+                dot1.style.top = Y1;
+                dot1.style.transform = "translate(-50%, -50%)";
+
+                // NEW YORK
+                const dot2 = document.getElementById("dot-2");
+                const LATITUDE2 = 40.7128;
+                const LONGITUDE2 = -74.006;
+                const X2 =
+                    ((LONGITUDE2 + 180) * (WIDTH / 360)).toString() + "px";
+                const Y2 =
+                    ((90 - LATITUDE2) * (HEIGHT / 180)).toString() + "px";
+                dot2.style.left = X2;
+                dot2.style.top = Y2;
+                dot2.style.transform = "translate(-50%, -50%)";
+
+                // NEW DELHI
+                const dot3 = document.getElementById("dot-3");
+                const LATITUDE3 = 28.6139;
+                const LONGITUDE3 = 77.209;
+                const X3 =
+                    ((LONGITUDE3 + 180) * (WIDTH / 360)).toString() + "px";
+                const Y3 =
+                    ((90 - LATITUDE3) * (HEIGHT / 180)).toString() + "px";
+                dot3.style.left = X3;
+                dot3.style.top = Y3;
+                dot3.style.transform = "translate(-50%, -50%)";
+            };
+            window.onload = myFunc;
+            window.onresize = myFunc;
+        </script>
+    </body>
+</html>
